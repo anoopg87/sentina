@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="au.com.sentina.ui.activity.MainActivity">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal"
+       android:weightSum="3"
+       >
+       <fragment
+           android:layout_weight="2"
+           android:id="@+id/propertyList"
+           android:name="au.com.sentina.ui.fragment.PropertyListFragment"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"/>
+
+       <fragment
+           android:name="au.com.sentina.ui.fragment.PropertyDetailsFragment"
+           android:layout_weight="1"
+           android:id="@+id/propertyDetails"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"/>
+   </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

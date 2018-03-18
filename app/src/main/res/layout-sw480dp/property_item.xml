@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="au.com.sentina.data.Data" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:scaleType="fitXY"
+                android:src="@{viewModel.photo.image.medium.url}"/>
+            <ImageView
+                android:visibility="@{viewModel._premium}"
+                android:src="@drawable/premium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/owner"
+                android:background="@color/navy_blue"
+                android:layout_below="@+id/image"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="5dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:profile="@{viewModel.owner.avatar.medium.url}"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/white" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/ownerName"
+                    android:text='@{viewModel.owner.first_name+ " "+ viewModel.owner.last_name}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" />
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_below="@+id/owner"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/navy_blue"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:id="@+id/title"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{viewModel.title}' />
+
+
+                <TextView
+                    android:textColor="@color/navy_blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:text='@{viewModel.price}'
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@+id/title"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/address_line1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    android:text='@{viewModel.location.address_1 +","+ viewModel.location.address_2}' />
+
+                <TextView
+                    android:textColor="@color/light_grey"
+                    android:textSize="14sp"
+                    android:id="@+id/address_line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/address_line1"
+                    android:text='@{viewModel.location.suburb +" "+viewModel.location.state +" "+ viewModel.location.postcode}' />
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/address_line2"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                   >
+
+                    <TextView
+                        android:textColor="@color/light_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/bedrooms"
+                        android:gravity="center_vertical"
+                        android:text="@{String.valueOf(viewModel.bedrooms)}"
+                        android:visibility="@{viewModel.bedrooms>0}"
+                        tools:text="1"
+                        android:layout_marginRight="5dp"
+                        android:drawableEnd="@drawable/bedrooms"
+                        android:layout_marginEnd="5dp" />
+
+                    <TextView
+                        android:textColor="@color/light_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/bathrooms"
+                        android:gravity="center_vertical"
+                        android:text="@{String.valueOf(viewModel.bathrooms)}"
+                        android:textAlignment="center"
+                        android:visibility="@{viewModel.bathrooms>0}"
+                        tools:text="1"
+                        android:layout_marginRight="5dp"
+                        android:drawableEnd="@drawable/bathrooms"
+                        android:layout_marginEnd="5dp" />
+
+                    <TextView
+                        android:textColor="@color/light_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/carparking"
+                        android:gravity="center_vertical"
+                        android:text="@{String.valueOf(viewModel.carspots)}"
+                        android:textAlignment="center"
+                        android:visibility="@{viewModel.carspots>0}"
+                        tools:text="1"
+                        android:drawableEnd="@drawable/carparking" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>
+
+
