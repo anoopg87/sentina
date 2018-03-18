@@ -7,7 +7,6 @@ import dagger.Provides
 @Module
 class AppModule(private var ctx: Context) {
 
-
   @Provides
   @AppScope
   fun provideContext():Context= this.ctx

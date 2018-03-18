@@ -8,11 +8,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
-/**
- * Created by Whizz on 27/2/18.
- */
 @Module
 class RetrofitModule(private val apiUrl: String) {
 
