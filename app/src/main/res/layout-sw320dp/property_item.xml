@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="au.com.sentina.data.Data" />
@@ -28,7 +28,7 @@
                 android:scaleType="fitXY"
                 android:src="@{viewModel.photo.image.medium.url}"/>
             <ImageView
-                android:visibility="@{viewModel._premium}"
+                android:visibility="@{viewModel._premium, default=gone}"
                 android:src="@drawable/premium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

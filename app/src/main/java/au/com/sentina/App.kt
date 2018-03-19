@@ -1,17 +1,12 @@
 package au.com.sentina
 
 import android.app.Application
-import android.content.Context
 import au.com.sentina.di.WebServiceModule
 import au.com.sentina.util.Constants
-import com.app.kotlin.di.AppComponent
-import com.app.kotlin.di.AppModule
-import com.app.kotlin.di.DaggerAppComponent
-import com.app.kotlin.di.OkHttpModule
-import com.app.kotlin.di.RetrofitModule
+import com.app.kotlin.di.*
 
 class App:Application() {
-    var context: Context?=null
+    var context: App?=null
 
     override fun onCreate() {
         super.onCreate()
@@ -30,5 +25,4 @@ class App:Application() {
     companion object {
         var appComponent:AppComponent?=null
     }
-
 }
