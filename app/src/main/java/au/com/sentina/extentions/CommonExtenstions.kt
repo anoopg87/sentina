@@ -17,14 +17,14 @@ fun ViewGroup.inflate(layoutRes: Int, attachToRoot: Boolean = false): View {
 @BindingAdapter("android:src")
 fun loadImage(view: ImageView, url: String) {
     val picasso: Picasso? =App.appComponent?.picasso()
-    picasso?.load(url)?.resize(480, 320)?.into(view)
+    picasso?.load(url)?.fit()?.into(view)
 }
 
 
 @BindingAdapter("android:profile")
 fun loadImage(view: CircleImageView, url: String) {
     val picasso: Picasso? =App.appComponent?.picasso()
-    picasso?.load(url)?.resize(80, 80)?.into(view)
+    picasso?.load(url)?.fit()?.into(view)
 }
 
 
