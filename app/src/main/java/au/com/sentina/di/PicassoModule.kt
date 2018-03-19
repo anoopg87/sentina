@@ -10,11 +10,18 @@ import okhttp3.OkHttpClient
 
 @Module
 class PicassoModule {
+
     @Provides
     @AppScope
-    fun providePicasso(ctx:Context, okHttpClient: OkHttpClient):Picasso{
+    fun provideOkHttpDownloader(okHttpClient: OkHttpClient):OkHttp3Downloader{
+        return OkHttp3Downloader(okHttpClient)
+    }
+    
+    @Provides
+    @AppScope
+    fun providePicasso(ctx:Context, okHttp3Downloader: OkHttp3Downloader):Picasso{
         return Picasso.Builder(ctx)
-                .downloader(OkHttp3Downloader(okHttpClient))
+                .downloader(okHttp3Downloader)
                 .build()
     }
 }
