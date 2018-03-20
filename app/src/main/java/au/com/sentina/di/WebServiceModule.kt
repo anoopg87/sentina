@@ -11,7 +11,7 @@ class WebServiceModule {
 
     @Provides
     @AppScope
-    fun provideAPI(retrofit: Retrofit ):API{
+    fun provideAPI(retrofit: Retrofit): API {
         return retrofit.create(API::class.java)
 
     }

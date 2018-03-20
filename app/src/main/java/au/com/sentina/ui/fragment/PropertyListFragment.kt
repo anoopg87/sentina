@@ -17,57 +17,52 @@ import au.com.sentina.ui.adapter.PropertyAdapter
 import au.com.sentina.viewmodel.PropertyViewModel
 import kotlinx.android.synthetic.main.fragment_property_list.*
 
-class PropertyListFragment: Fragment() {
+class PropertyListFragment : Fragment() {
 
-    private var propertyViewModel: PropertyViewModel?=null
-    private var layoutSavedState: Parcelable?=null
+    private var propertyViewModel: PropertyViewModel? = null
+    private var layoutSavedState: Parcelable? = null
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelable(LAYOUT_SAVED_STATE,propertyList?.layoutManager?.onSaveInstanceState())
+        outState.putParcelable(LAYOUT_SAVED_STATE, propertyList?.layoutManager?.onSaveInstanceState())
         super.onSaveInstanceState(outState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        layoutSavedState=savedInstanceState?.getParcelable(LAYOUT_SAVED_STATE)
-        super.onActivityCreated(savedInstanceState)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        propertyViewModel= activity?.let { ViewModelProviders.of(it).get(PropertyViewModel::class.java) }
+        layoutSavedState = savedInstanceState?.getParcelable(LAYOUT_SAVED_STATE)
+        propertyViewModel = activity?.let { ViewModelProviders.of(it).get(PropertyViewModel::class.java) }
         propertyViewModel?.getProperties()?.observe(this, Observer {
             setupPropertyList(it)
         })
+        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(LAYOUT,container,false)
+        return inflater.inflate(LAYOUT, container, false)
     }
 
     private fun setupPropertyList(it: Properties?) {
-        if(null!=it) {
+        if (null != it) {
             val adapter = PropertyAdapter(it.data)
-            adapter.onClickListener= object : OnClickListener<Data> {
+            adapter.onClickListener = object : OnClickListener<Data> {
                 override fun onClick(d: Data, pos: Int) {
                     propertyViewModel?.select(d)
                 }
             }
-            propertyList.layoutManager=LinearLayoutManager(this.activity)
+            propertyList.layoutManager = LinearLayoutManager(this.activity)
             propertyList.setHasFixedSize(true)
             propertyList.setItemViewCacheSize(20)
             propertyList.isDrawingCacheEnabled = true
             propertyList.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
 
-            propertyList.adapter=adapter
-            if(null!=layoutSavedState) {
+            propertyList.adapter = adapter
+            if (null != layoutSavedState) {
                 propertyList.layoutManager.onRestoreInstanceState(layoutSavedState)
             }
         }
     }
 
     companion object {
-        private const val LAYOUT:Int= R.layout.fragment_property_list
-        private const val LAYOUT_SAVED_STATE="layoutSavedState"
+        private const val LAYOUT: Int = R.layout.fragment_property_list
+        private const val LAYOUT_SAVED_STATE = "layoutSavedState"
     }
 }

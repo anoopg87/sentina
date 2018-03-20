@@ -13,13 +13,13 @@ class PicassoModule {
 
     @Provides
     @AppScope
-    fun provideOkHttpDownloader(okHttpClient: OkHttpClient):OkHttp3Downloader{
+    fun provideOkHttpDownloader(okHttpClient: OkHttpClient): OkHttp3Downloader {
         return OkHttp3Downloader(okHttpClient)
     }
 
     @Provides
     @AppScope
-    fun providePicasso(ctx:Context, okHttp3Downloader: OkHttp3Downloader):Picasso{
+    fun providePicasso(ctx: Context, okHttp3Downloader: OkHttp3Downloader): Picasso {
         return Picasso.Builder(ctx)
                 .downloader(okHttp3Downloader)
                 .build()

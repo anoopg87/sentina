@@ -1,5 +1,6 @@
-package com.app.kotlin.di
+package au.com.sentina.di
 
+import com.app.kotlin.di.AppScope
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -14,19 +15,19 @@ class RetrofitModule(private val apiUrl: String) {
 
     @Provides
     @AppScope
-    fun rxJava2CallAdaptorFactory():RxJava2CallAdapterFactory= RxJava2CallAdapterFactory.create()
+    fun rxJava2CallAdaptorFactory(): RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
 
     @Provides
     @AppScope
-    fun gson():Gson=GsonBuilder().create()
+    fun gson(): Gson = GsonBuilder().create()
 
     @Provides
     @AppScope
-    fun gsonConvertFactory(gson: Gson):GsonConverterFactory= GsonConverterFactory.create(gson)
+    fun gsonConvertFactory(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
 
     @Provides
     @AppScope
-    fun retrofit(okHttpClient: OkHttpClient,gsonConverterFactory: GsonConverterFactory,rxJava2CallAdapterFactory: RxJava2CallAdapterFactory):Retrofit= with(Retrofit.Builder()){
+    fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit = with(Retrofit.Builder()) {
         baseUrl(apiUrl)
         addConverterFactory(gsonConverterFactory)
         addCallAdapterFactory(rxJava2CallAdapterFactory)

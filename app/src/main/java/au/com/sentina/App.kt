@@ -1,17 +1,17 @@
 package au.com.sentina
 
 import android.app.Application
-import au.com.sentina.di.WebServiceModule
+import au.com.sentina.di.*
 import au.com.sentina.util.Constants
 import com.app.kotlin.di.*
 
-class App:Application() {
-    var context: App?=null
+class App : Application() {
+    var context: App? = null
 
     override fun onCreate() {
         super.onCreate()
-        context=this
-        appComponent=createAppComponent()
+        context = this
+        appComponent = createAppComponent()
         appComponent?.inject(this)
     }
 
@@ -23,6 +23,6 @@ class App:Application() {
     }
 
     companion object {
-        var appComponent:AppComponent?=null
+        var appComponent: AppComponent? = null
     }
 }
