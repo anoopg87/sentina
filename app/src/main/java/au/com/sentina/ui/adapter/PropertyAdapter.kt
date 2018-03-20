@@ -6,7 +6,7 @@ import au.com.sentina.R
 import au.com.sentina.data.Data
 
 
-class PropertyAdapter(properties:List<Data>): BindingRecyclerViewAdapter<Data, PropertyAdapterViewModel>(properties) {
+class PropertyAdapter(properties: List<Data>) : BindingRecyclerViewAdapter<Data, PropertyAdapterViewModel>(properties) {
     override val layoutId: Int
         get() = R.layout.property_item
 

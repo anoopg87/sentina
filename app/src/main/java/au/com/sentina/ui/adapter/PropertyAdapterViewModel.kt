@@ -6,11 +6,11 @@ import android.view.View
 import au.com.sentina.data.Data
 
 
-class PropertyAdapterViewModel(itemView: View): BindingViewHolder<Data>(itemView) {
+class PropertyAdapterViewModel(itemView: View) : BindingViewHolder<Data>(itemView) {
     override fun bind(item: Data, variable: Int, onClickListener: OnClickListener<Data>?) {
-        val dataBinding: ViewDataBinding?= DataBindingUtil.bind(itemView)
-        dataBinding?.setVariable(variable,item)
-        dataBinding?.root?.setOnClickListener({ onClickListener?.onClick(item,adapterPosition) })
+        val dataBinding: ViewDataBinding? = DataBindingUtil.bind(itemView)
+        dataBinding?.setVariable(variable, item)
+        dataBinding?.root?.setOnClickListener({ onClickListener?.onClick(item, adapterPosition) })
 
     }
 }
