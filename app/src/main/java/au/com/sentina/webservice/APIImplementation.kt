@@ -2,22 +2,22 @@ package au.com.sentina.webservice
 
 import au.com.sentina.App
 import au.com.sentina.data.Properties
-import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class APIImplementation {
-    var api: API?=null
-    @Inject set
+    var api: API? = null
+        @Inject set
 
     init {
-      App.appComponent?.inject(this)
+        App.appComponent?.inject(this)
     }
 
-    fun getProperties():Flowable<Properties>?{
+    fun getProperties(): Single<Properties>? {
 
-        return if(api!=null) {
-            Flowable.fromCallable { api!!.getProperties().execute().body() }
-        }else null
+        return if (api != null) {
+            Single.fromCallable { api!!.getProperties().execute().body() }
+        } else null
 
     }
 }
