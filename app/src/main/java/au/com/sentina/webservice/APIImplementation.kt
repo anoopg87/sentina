@@ -14,9 +14,8 @@ class APIImplementation {
     }
 
     fun getProperties(): Single<Properties>? {
-
         return if (api != null) {
-            Single.fromCallable { api!!.getProperties().execute().body() }
+            api!!.getProperties()
         } else null
 
     }
