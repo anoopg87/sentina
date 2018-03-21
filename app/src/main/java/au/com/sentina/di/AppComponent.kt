@@ -1,7 +1,7 @@
 package au.com.sentina.di
 
 import au.com.sentina.App
-import au.com.sentina.webservice.APIImplementation
+import au.com.sentina.repository.PropertyRepository
 import com.app.kotlin.di.AppScope
 import com.squareup.picasso.Picasso
 import dagger.Component
@@ -10,6 +10,6 @@ import dagger.Component
 @AppScope
 interface AppComponent {
     fun inject(ctx: App)
-    fun inject(apiImplementation: APIImplementation)
+    fun inject(propertyRepository: PropertyRepository)
     fun picasso(): Picasso
 }

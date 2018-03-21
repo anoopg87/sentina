@@ -1,25 +1,23 @@
 package au.com.sentina.repository
 
+import au.com.sentina.App
 import au.com.sentina.data.Properties
-import au.com.sentina.webservice.APICallBacks
-import au.com.sentina.webservice.APIImplementation
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import au.com.sentina.webservice.API
+import io.reactivex.Single
+import javax.inject.Inject
 
 
-class PropertyRepository(private val callBack: APICallBacks<Properties>) {
+class PropertyRepository {
 
-    fun getProperties(): Disposable? {
-        return APIImplementation().getProperties()
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(
-                        {
-                            callBack.setResult(it)
-                        },
-                        {
-                            callBack.setError(it.localizedMessage)
-                        })
+    var api: API? = null
+        @Inject set
+
+    init {
+        App.appComponent?.inject(this)
+    }
+
+    fun getProperties(): Single<Properties>? {
+        return api?.getProperties()
+
     }
 }

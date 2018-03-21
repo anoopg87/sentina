@@ -5,25 +5,27 @@ import android.arch.lifecycle.ViewModel
 import au.com.sentina.data.Data
 import au.com.sentina.data.Properties
 import au.com.sentina.repository.PropertyRepository
-import au.com.sentina.webservice.APICallBacks
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 
 class PropertyViewModel : ViewModel() {
     private var properties: MutableLiveData<Properties>? = null
     private var selectedProperty: MutableLiveData<Data> = MutableLiveData()
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private var propertyRepository: PropertyRepository = PropertyRepository(object : APICallBacks<Properties> {
-        override fun setError(message: String) {
-        }
-
-        override fun setResult(t: Properties) {
-            properties?.value = t
-        }
-    })
-
+    private var propertyRepository: PropertyRepository = PropertyRepository()
     private fun loadProperties() {
-        compositeDisposable.add(propertyRepository.getProperties())
+        compositeDisposable.add(propertyRepository.getProperties()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
+                        {
+                            properties?.value = it
+                        },
+                        {
+
+                        }))
     }
 
     fun select(data: Data) {
