@@ -3,7 +3,6 @@ package au.com.sentina
 import android.app.Application
 import au.com.sentina.di.*
 import au.com.sentina.util.Constants
-import com.app.kotlin.di.*
 
 class App : Application() {
     var context: App? = null

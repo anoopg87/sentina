@@ -19,13 +19,7 @@ class PropertyViewModel : ViewModel() {
         compositeDisposable.add(propertyRepository.getProperties()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(
-                        {
-                            properties?.value = it
-                        },
-                        {
-
-                        }))
+                ?.subscribe{ p -> properties?.value= p})
     }
 
     fun select(data: Data) {
